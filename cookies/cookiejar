@@ -1,0 +1,6 @@
+#LWP-Cookies-2.0
+Set-Cookie3: BAIDUID="3CD3AF13EF9BFE4EDEB6D42DEFC00421:FG=1"; path="/"; domain=".baidu.com"; path_spec; domain_dot; expires="2019-01-29 01:40:02Z"; version=0
+Set-Cookie3: dc_session_id="10_1517190011041.124975"; path="/"; domain=".csdn.net"; path_spec; domain_dot; expires="2025-01-01 00:00:00Z"; version=0
+Set-Cookie3: uuid_tt_dd=8386452253527585010_20180129; path="/"; domain=".csdn.net"; path_spec; expires="2028-01-27 01:40:10Z"; version=0
+Set-Cookie3: TIEBAUID=cb23caae14130a0d384a57f1; path="/"; domain=".tieba.baidu.com"; path_spec; expires="2020-12-31 15:59:59Z"; version=0
+Set-Cookie3: TIEBA_USERTYPE=ef91730a8099bc6b1327742b; path="/"; domain=".tieba.baidu.com"; path_spec; expires="2020-12-31 15:59:59Z"; version=0
