@@ -35,20 +35,21 @@ def login():
     driver.find_element_by_xpath('//input[@class="pass-button pass-button-submit"]').click()
     time.sleep(10)
     driver.find_element_by_xpath('//input[@class="pass-button pass-button-submit"]').click()
-    cookies = driver.get_cookies()
-
-    with open(basic_file + 'somepython', 'w+') as f:
-        pickle.dump(obj=cookies, file=f)
 
     time.sleep(2)
     driver.get(url='http://tieba.baidu.com/p/5465046117')
 
     element_publish_text = driver.find_element_by_xpath('//div[@id="ueditor_replace"]')
-    element_publish_text.send_keys('每日签到')
+    element_publish_text.send_keys('shuishuijingyan')
     time.sleep(2)
     publish_button = driver.find_element_by_xpath(
         '//div[@class="poster_component editor_bottom_panel clearfix"]/div[@class="j_floating"]/a')
     publish_button.click()
+
+    cookies = driver.get_cookies()
+
+    with open(basic_file + 'somepython', 'w+') as f:
+        pickle.dump(obj=cookies, file=f)
 
     socket1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     socket_port=23456
@@ -81,6 +82,7 @@ def login():
 
             ''' % (tbs)
             # print script
+            #omzVouOACqkNljzDbdOB
 
             BSK = driver.execute_script(script)
 
