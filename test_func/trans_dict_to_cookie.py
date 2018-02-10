@@ -12,7 +12,7 @@ from selenium import webdriver
 def test():
 
     cookiejar=cookielib.LWPCookieJar()
-    with open('F:/project_2018/YF_BD/projectfile/'+'cookie/Selenium_cookie/somepython','r') as f:
+    with open('F:/project_2018/YF_BD/projectfile_BD/'+'cookie/Selenium_cookie/somepython','r') as f:
 
         cookielist=pickle.load(f)
 
