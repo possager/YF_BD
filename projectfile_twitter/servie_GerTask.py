@@ -44,7 +44,7 @@ def service_getTask():
                 'platform': 'twitter',
                 'content': 'this is content%s'%(str(random.randint(1,1000))),
                 'type': '评论',
-                'url': 'https://twitter.com/SrBachchan/status/961864009166209024',
+                'url': 'https://twitter.com/BBCBreaking/status/967434947320479745',#https://twitter.com/SrBachchan/status/961864009166209024
                 'userId': 1,
                 'account': 'mio1650392zhi@163.com',
                 'account_id': 1,
@@ -86,7 +86,7 @@ def service_getTask():
                 except Exception as e:
                     print e
                     return False
-                thisclass.save_user_Cookie()
+                # thisclass.save_user_Cookie()#重复了
                 result=execute_task(data=data,twitterInstance=thisclass)
 
             #怎么处理这个result,cookie失效的样子是什么样子的。。。。。。。目前没有碰到cookie失效的情况。

@@ -15,6 +15,11 @@ import re
 from selenium import webdriver
 
 
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
+
+
+
 
 class twitter:
     '''
@@ -128,6 +133,30 @@ class twitter:
         loginButton.click()
 
 
+        #begin
+        #增加一个针对帖子来评论，以此来生成对应的gid等cookie
+        # forum1=logindriver.find_element_by_xpath('//div[@id="page-container"]//div[@role="main"]//div[@class="stream"]//ol/li[2]')
+        forum1 = logindriver.find_element_by_xpath(
+            '//div[@id="page-container"]//div[@role="main"]//div[@class="stream"]//ol/li[2]/div/div[@class="content"]//span[@class="Icon Icon--medium Icon--reply"]')
+        forum1.click()
+
+
+        Actioncharis1 = ActionChains(logindriver)
+        action1 = Actioncharis1.send_keys('mark')
+
+        action1.perform()
+
+        reply_button = logindriver.find_element_by_xpath(
+            '//div[@class="modal-tweet-form-container"]//div[@class="TweetBoxToolbar"]//button/span[@class="button-text replying-text"]')
+        reply_button.click()
+
+        #end
+
+
+
+
+
+
         cookies_raw_list=logindriver.get_cookies()
         self.cookie_raw=cookies_raw_list
         cookie_list=[]
@@ -221,19 +250,34 @@ class twitter:
         # }
 
 
-        headers1 = {
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'zh-CN,zh;q=0.9',
-            'cache-control': 'max-age=0',
-            'referer': 'https://twitter.com/',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36',
+        # headers1 = {
+        #     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+        #     'accept-encoding': 'gzip, deflate, br',
+        #     'accept-language': 'zh-CN,zh;q=0.9',
+        #     'cache-control': 'max-age=0',
+        #     'referer': 'https://twitter.com/',
+        #     'upgrade-insecure-requests': '1',
+        #     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36',
+        # }
+
+
+        headers2={
+            'accept':'application/json, text/javascript, */*; q=0.01',
+            'accept-encoding':'gzip, deflate, br',
+            'accept-language':'zh-CN,zh;q=0.9',
+            'content-length':'216',
+            'content-type':'application/x-www-form-urlencoded; charset=UTF-8',
+            'origin':'https://twitter.com',
+            'referer':'https://twitter.com/',
+            'user-agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36',
+            'x-requested-with':'XMLHttpRequest',
+            'x-twitter-active-user':'yes',
         }
 
-        replyresponse=self.session.post(url=posturl,data=postdata,headers=headers1)
+
+        replyresponse=self.session.post(url=posturl,data=postdata,headers=headers2)
         print replyresponse.text
-        responseJson= replyresponse.json()
+        # responseJson= replyresponse.json()
         if replyresponse.status_code<300 and replyresponse.json()['tweet_id']:
             print '评论成功'
             return True
@@ -465,7 +509,7 @@ class twitter:
             'place_id':'',
             'status':content,
             'tagged_users':'',
-            'weighted_character_count':''
+            # 'weighted_character_count':''
         }
         return postdata
 
@@ -500,18 +544,19 @@ class twitter:
             myProxy = self.link_ip+':'+self.link_port
         else:
             myProxy=proxy
-        options = webdriver.ChromeOptions()
-        desired_capabilities = options.to_capabilities()
-        desired_capabilities['proxy'] = {
-            "httpProxy": myProxy,
-            "ftpProxy": myProxy,
-            "sslProxy": myProxy,
-            "noProxy": None,
-            "proxyType": "MANUAL",
-            "class": "org.openqa.selenium.Proxy",
-            "autodetect": False
-        }
-        driver = webdriver.Chrome(desired_capabilities=desired_capabilities)
+        # options = webdriver.ChromeOptions()
+        # desired_capabilities = options.to_capabilities()
+        # desired_capabilities['proxy'] = {
+        #     "httpProxy": myProxy,
+        #     "ftpProxy": myProxy,
+        #     "sslProxy": myProxy,
+        #     "noProxy": None,
+        #     "proxyType": "MANUAL",
+        #     "class": "org.openqa.selenium.Proxy",
+        #     "autodetect": False
+        # }
+        # driver = webdriver.Chrome(desired_capabilities=desired_capabilities)
+        driver=webdriver.Chrome()
         return driver
 
 
